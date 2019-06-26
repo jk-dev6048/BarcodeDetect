@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//Edited by dhanesh100055
+//Edited by dhanesh100055899
         txtView = (TextView) findViewById(R.id.txtContent);
         ImageView myImageView = (ImageView) findViewById(R.id.imgview);
         myBitmap = BitmapFactory.decodeResource(
