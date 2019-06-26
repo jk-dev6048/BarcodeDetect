@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.Frame;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Edited by JK
         txtView = (TextView) findViewById(R.id.txtContent);
         ImageView myImageView = (ImageView) findViewById(R.id.imgview);
         myBitmap = BitmapFactory.decodeResource(
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Frame frame = new Frame.Builder().setBitmap(myBitmap).build();
+
                 SparseArray<Barcode> barcodes = detector.detect(frame);
 
                 Barcode thisCode = barcodes.valueAt(0);
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this,CameraScanActivity.class);
                 startActivityForResult(intent,0);
+                Toast.makeText(MainActivity.this,"Begin",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == CommonStatusCodes.SUCCESS){
                 if (data!=null){
                     Barcode barcode = data.getParcelableExtra("barcode");
-                    txtView.setText("BARcode value : " + barcode.displayValue);
+                    txtView.setText("BAR code value : " + barcode.displayValue);
                 }else {
                     txtView.setText("No Data ");
                 }
